@@ -12,12 +12,9 @@ pub struct MyGreeter {}
 
 #[tonic::async_trait]
 impl Greeter for MyGreeter {
-    async fn say_hello(
-        &self,
-        request: Request<HelloRequest>, // Accept request of type HelloRequest
-    ) -> Result<Response<HelloReply>, Status> { // Return an instance of type HelloReply
-        //println!("Got a request: {:?}", request);
-        //
+    async fn say_hello( &self, request: Request<HelloRequest>, ) -> Result<Response<HelloReply>, Status> { // Return an instance of type HelloReply
+
+        println!("{:?}", request.into_inner().name);
         let now: DateTime<Utc> = Utc::now();
         let reply = HelloReply {
             message: format!("{}", now.format("%Y-%m-%d_%H:%M:%S")), // We must use .into_inner() as the fields of gRPC requests and responses are private
