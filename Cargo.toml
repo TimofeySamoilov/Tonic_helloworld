@@ -12,6 +12,7 @@ name = "helloworld-client"
 path = "src/client.rs"
 
 [dependencies]
+rdev = "0.5"
 chrono = "0.4"
 tonic = "0.12"
 prost = "0.13"

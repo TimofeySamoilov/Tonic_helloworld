@@ -6,6 +6,7 @@ use chrono::prelude::*;
 pub mod hello_world {
     tonic::include_proto!("helloworld"); // The string specified here must match the proto package name
 }
+#[warn(unused_variables)]
 #[derive(Debug, Default)]
 pub struct MyGreeter {}
 
