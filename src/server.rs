@@ -3,9 +3,7 @@ use tonic::{transport::Server, Request, Response, Status};
 use hello_world::greeter_server::{Greeter, GreeterServer};
 use hello_world::{HelloReply, HelloRequest};
 use chrono::prelude::*;
-pub mod hello_world {
-    tonic::include_proto!("helloworld"); // The string specified here must match the proto package name
-}
+pub mod hello_world { tonic::include_proto!("helloworld"); }
 #[warn(unused_variables)]
 #[derive(Debug, Default)]
 pub struct MyGreeter {}
@@ -27,7 +25,6 @@ impl Greeter for MyGreeter {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let addr = "[::1]:50051".parse()?;
     let greeter = MyGreeter::default();
-
     Server::builder().add_service(GreeterServer::new(greeter)).serve(addr).await?;
 
     Ok(())
